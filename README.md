@@ -5,22 +5,22 @@ This is the official implementation of Deep-BCR-Auto.
 1. Use any foreground segmentation method you like. Here, we use the [CLAM](https://github.com/mahmoodlab/CLAM/tree/master)'s implementation. Clone and go to the `/CLAM` folder.
 2. Basic run (changed sthresh to 20):
 ```shell
-python create_patches_fp.py --source /isilon/datalake/cialab/original/cialab/image_database/d00142/tcga_brca_slides --save_dir results/TCGA --patch_size 448 --step_size 448 --seg
+python create_patches_fp.py --source <> --save_dir results/TCGA --patch_size 448 --step_size 448 --seg
 ```
 3. Tune segmentations. Inspect each mask, tune `process_list_edited.csv` and set `processed` to 1 for the mask you want to tune:
 ```shell
-python create_patches_fp.py --source /isilon/datalake/cialab/original/cialab/image_database/d00142/tcga_brca_slides --save_dir results/TCGA --patch_size 448 --step_size 448 --seg --process_list process_list_edited.csv
+python create_patches_fp.py --source <> --save_dir results/TCGA --patch_size 448 --step_size 448 --seg --process_list process_list_edited.csv
 ```
 4. Get tissue patches. Set all `processed` to 1:
 ```shell
-python create_patches_fp.py --source /isilon/datalake/cialab/original/cialab/image_database/d00142/tcga_brca_slides --save_dir results/TCGA --patch_size 448 --step_size 448 --seg --process_list process_list_edited.csv --patch --stitch
+python create_patches_fp.py --source <> --save_dir results/TCGA --patch_size 448 --step_size 448 --seg --process_list process_list_edited.csv --patch --stitch
 ```
 
 ## Tumor bulk detection
 1. GO TO   `/tumorbulk`
 2. generate tumor bulk masks
 ```shell
-python tumorbulk.py --datadir /isilon/datalake/cialab/original/cialab/image_database/d00142/tcga_brca_latest --ptsdir ../CLAM/results/TCGA/patches --savedir ./results --code TCGA
+python tumorbulk.py --datadir <> --ptsdir ../CLAM/results/TCGA/patches --savedir ./results --code TCGA
 ```
 3. create a dataset excel based on those having masks. ('../tcga_brca_bulkdetected.csv')
 4.  crop patches:
