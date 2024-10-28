@@ -18,7 +18,9 @@ python create_patches_fp.py --source <> --save_dir results/TCGA --patch_size 448
 
 ## Tumor bulk detection
 1. GO TO   `/tumorbulk`
-2. generate tumor bulk masks
+2. Download pretrained weights from [here](https://drive.google.com/drive/folders/1ZDSObfFPZpuMJSsxsahhJkf93R80QjOa?usp=sharing) .\
+   Copy 'ctranspath.pth' to `/tumorbulk/TransPath/` and copy 'model_best.pth.tar' to `/tumorbulk/`
+3. generate tumor bulk masks
 ```shell
 python tumorbulk.py --datadir <> --ptsdir ../CLAM/results/TCGA/patches --savedir ./results --code TCGA
 ```
@@ -37,7 +39,7 @@ Main args:
 * ``**NOTE: pts are now saved in (x, y) format for consistency``
 
 ## Deep-BCR
-1. go to `./casii/TransPath`.
+1. go to `./casii/TransPath`. Copy 'ctranspath.pth' to `/casii/TransPath/` (see the google link from previous step).
 2. encode patches:
 ```shell
 python get_features_CTransPath_stainnorm.py --psize 896 --level 0 --datadf ../../tcga_brca_bulkdetected.csv --save ../data/ctpnormembedding --stainnorm
@@ -79,6 +81,9 @@ Main args:
 * `--psize` : patch size
 * `--weighted_sample` : store-true, default: False
 * `--nfold` : num of folds, default: 5
+
+Pretrained weights can be find at [here](https://drive.google.com/drive/folders/1ZDSObfFPZpuMJSsxsahhJkf93R80QjOa?usp=sharing) in folders `42`, `43`, and `44`. `42` is the best performed fold.\
+Our splits file can be find at the same link in folder `splits`.
 
 5. test
 ```shell
