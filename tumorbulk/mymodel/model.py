@@ -62,8 +62,8 @@ def swin_s(outd=1, weights='IMAGENET1K_V1'):
 def ctrans(outd=1):
     net = ctranspath()
     net.head = nn.Identity()
-    td = torch.load(r'./TransPath/ctranspath.pth')
-    net.load_state_dict(td['model'], strict=True)
+    # td = torch.load(r'./TransPath/ctranspath.pth')
+    # net.load_state_dict(td['model'], strict=True)
     for name, param in net.named_parameters():
         if not name.startswith('layers.3') or not name.startswith('norm') or not name.startswith('head'):
             param.requires_grad = False
